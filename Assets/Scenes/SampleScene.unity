@@ -1730,6 +1730,18 @@ PrefabInstance:
       propertyPath: tidynessMeter
       value: 
       objectReference: {fileID: 856411429}
+    - target: {fileID: 209638179, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
+      propertyPath: save.love
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 209638179, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
+      propertyPath: save.hunger
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 209638179, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
+      propertyPath: save.tidyNess
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
 --- !u!1001 &1937700868
@@ -1757,7 +1769,7 @@ PrefabInstance:
     - target: {fileID: 5004418106035136096, guid: acf572a42e57ee54781446dc905e1339,
         type: 3}
       propertyPath: current
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5004418106035136096, guid: acf572a42e57ee54781446dc905e1339,
         type: 3}
@@ -1959,7 +1971,7 @@ PrefabInstance:
     - target: {fileID: 5004418106035136096, guid: acf572a42e57ee54781446dc905e1339,
         type: 3}
       propertyPath: current
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5004418106035136096, guid: acf572a42e57ee54781446dc905e1339,
         type: 3}

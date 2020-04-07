@@ -68,7 +68,26 @@ public class MouseOver : MonoBehaviour
         Rigidbody emojiRigid = emoji.GetComponent<Rigidbody> ();
         emojiRigid.AddExplosionForce (100, transform.position + pos, 1);
 
-        loveMeter.GetComponent<ProgressBar> ().current -= 10;
+        
+
+        if(emojiType == "emojiAngry")
+        {
+            loveMeter.GetComponent<ProgressBar> ().current -= 10;
+        }
+        else if(emojiType == "emojiLove")
+        {
+            loveMeter.GetComponent<ProgressBar> ().current += 10;
+        }
+        else if(emojiType == "emojiLike")
+        {
+            hungerMeter.GetComponent<ProgressBar> ().current -= 10;
+        }
+        else if(emojiType == "emojiClean")
+        {
+            tidynessMeter.GetComponent<ProgressBar> ().current += 10;
+        }
+
+
     }
 
     public void poop ()

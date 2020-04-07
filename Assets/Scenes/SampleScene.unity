@@ -1684,6 +1684,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 209638179, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
+      propertyPath: emojiMeshes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 209638179, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1687258584}
@@ -1763,6 +1767,26 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 209638179, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
       propertyPath: emotions.Array.data[3]
+      value: 
+      objectReference: {fileID: 2793109954867465579, guid: e761d4f162e0a744d8988bf11eb35f05,
+        type: 3}
+    - target: {fileID: 209638179, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
+      propertyPath: emojiMeshes.Array.data[0]
+      value: 
+      objectReference: {fileID: 6851657530889277895, guid: d7d7730a055f86440a820fbc10e49621,
+        type: 3}
+    - target: {fileID: 209638179, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
+      propertyPath: emojiMeshes.Array.data[1]
+      value: 
+      objectReference: {fileID: 5639067326114441081, guid: 4c9ad20488018b646a4b2d72a833d7fc,
+        type: 3}
+    - target: {fileID: 209638179, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
+      propertyPath: emojiMeshes.Array.data[2]
+      value: 
+      objectReference: {fileID: 6940650840433190302, guid: eeeff9ab87fc86d4797dcceea11ae046,
+        type: 3}
+    - target: {fileID: 209638179, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
+      propertyPath: emojiMeshes.Array.data[3]
       value: 
       objectReference: {fileID: 2793109954867465579, guid: e761d4f162e0a744d8988bf11eb35f05,
         type: 3}

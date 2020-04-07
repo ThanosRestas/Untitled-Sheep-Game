@@ -21,16 +21,19 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
             {
                 if (invPanel.name == "Slot_1")
                 {
-                    sheep.GetComponent<MouseOver> ().feelingLoved ();
+                    //sheep.GetComponent<MouseOver> ().feelingLoved ();
+                    sheep.GetComponent<MouseOver> ().showEmotion ("emojiLove");
                 }
                 else if (invPanel.name == "Slot_2")
                 {
-                    sheep.GetComponent<MouseOver> ().feelingSatisfied ();
+                    //sheep.GetComponent<MouseOver> ().feelingSatisfied ();
+                    sheep.GetComponent<MouseOver> ().showEmotion ("emojiLike");
                 }
             }
             else if ( hit.collider.name == "poop(Clone)")
             {
-                sheep.GetComponent<MouseOver> ().feelingClean ();
+                //sheep.GetComponent<MouseOver> ().feelingClean ();
+                sheep.GetComponent<MouseOver> ().showEmotion ("emojiClean");
                 Destroy(hit.collider.gameObject);
             }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[System.Serializable]
 public class MouseOver : MonoBehaviour
 {
 
@@ -15,8 +15,9 @@ public class MouseOver : MonoBehaviour
     public GameObject poopModel;
     public GameObject loveMeter;
     public GameObject hungerMeter;
-    public GameObject tidynessMeter;
-
+    public GameObject tidynessMeter;    
+    public List<GameObject> emotions = new List<GameObject>();   
+    private Dictionary<string, GameObject> emotions2 = new Dictionary<string, GameObject>(); 
     public SaveData save = new SaveData();
     void Awake() {
         
@@ -33,8 +34,15 @@ public class MouseOver : MonoBehaviour
         anim = gameObject.GetComponent<Animator> ();
         angry = gameObject.GetComponent<MeshRenderer> ();       
         
+        foreach(GameObject emotion in emotions)
+        {
+            emotions2.Add(emotion.name, emotion);
+        }
+
 
         InvokeRepeating ("heightenNeeds", 1, 1);
+
+
 
     }
 
@@ -56,11 +64,23 @@ public class MouseOver : MonoBehaviour
     {
         //Debug.Log ("Pet clicked !");  
         anim.Play ("stun");
-        feelingAngry ();
+        //emotion ("emojiAngry");
+        showEmotion("emojiAngry");
 
     }
 
-    public void feelingAngry ()
+    public void showEmotion(string emojiType)
+    {        
+        Vector3 pos = new Vector3 (0f, 3f, 0f);
+        GameObject emoji = Instantiate (emotions2[emojiType], transform.position + pos, Quaternion.Euler (0, 120, 20));
+
+        Rigidbody emojiRigid = emoji.GetComponent<Rigidbody> ();
+        emojiRigid.AddExplosionForce (100, transform.position + pos, 1);
+
+        loveMeter.GetComponent<ProgressBar> ().current -= 10;
+    }
+
+    /*public void feelingAngry ()
     {
         Vector3 pos = new Vector3 (0f, 3f, 0f);
         GameObject emoji = Instantiate (emojiAngry, transform.position + pos, Quaternion.Euler (0, 120, 20));
@@ -103,7 +123,7 @@ public class MouseOver : MonoBehaviour
         emojiRigid.AddExplosionForce (100, transform.position + pos, 1);
 
         tidynessMeter.GetComponent<ProgressBar> ().current += 10;
-    }
+    }*/
 
     public void poop ()
     {

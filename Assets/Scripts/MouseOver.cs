@@ -35,6 +35,9 @@ public class MouseOver : MonoBehaviour
         {
            emotionType.Add (emotion.name, emotion);
         }
+        
+        //private int timePassedSinceQuit = (int)SaveGameManager.loadMinusSave.TotalSeconds ;
+        loveMeter.GetComponent<ProgressBar> ().current -= (int)SaveGameManager.loadMinusSave.TotalSeconds * 1;
 
         InvokeRepeating ("heightenNeeds", 1, 1);
     }

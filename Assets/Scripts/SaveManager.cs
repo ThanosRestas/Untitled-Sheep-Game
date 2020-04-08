@@ -11,6 +11,8 @@ public class SaveData
     public int love;
     public int hunger;
     public int tidyNess;
+    public System.DateTime dateOfSave;
+    public System.DateTime dateOfLoad;
     // ------------------------------------------------
 }
 
@@ -19,9 +21,12 @@ public static class SaveGameManager
 {
     // Get unity's default save data path per platform and save to specified file
     public static string savePath = Application.persistentDataPath + "/player.sf";
-
+    // Time difference between Load time and Save time
+    public static System.TimeSpan loadMinusSave;
     public static void Save (SaveData saveData)
-    {
+    {   
+        // Get the time on save / close;
+        saveData.dateOfSave = System.DateTime.Now;
         BinaryFormatter binaryFormatter = new BinaryFormatter ();
 
         // Create path on device
@@ -34,6 +39,8 @@ public static class SaveGameManager
 
     public static SaveData Load ()
     {
+
+        
         // Check specified path exists
         if (!File.Exists (savePath))
             return null;
@@ -46,6 +53,13 @@ public static class SaveGameManager
         SaveData saveData = binaryFormatter.Deserialize (stream) as SaveData;
         stream.Close ();
 
+        saveData.dateOfLoad = System.DateTime.Now;
+        Debug.Log("Saved :" + saveData.dateOfSave);
+        Debug.Log("Loaded :" + saveData.dateOfLoad);
+
+        loadMinusSave = saveData.dateOfLoad - saveData.dateOfSave;
+        Debug.Log("Time passed in seconds :" + (int)loadMinusSave.TotalSeconds);
+        
         return saveData;
     }
 }

@@ -26,6 +26,7 @@ public class MouseOver : MonoBehaviour
         save = SaveGameManager.Load ();
         loveMeter.GetComponent<ProgressBar> ().current = save.love;
         hungerMeter.GetComponent<ProgressBar> ().current = save.hunger;
+
         tidynessMeter.GetComponent<ProgressBar> ().current = save.tidyNess;
 
         anim = gameObject.GetComponent<Animator> ();
@@ -37,6 +38,9 @@ public class MouseOver : MonoBehaviour
         }
         
         //private int timePassedSinceQuit = (int)SaveGameManager.loadMinusSave.TotalSeconds ;
+        loveMeter.GetComponent<ProgressBar> ().current -= (int)SaveGameManager.loadMinusSave.TotalSeconds * 1;
+        hungerMeter.GetComponent<ProgressBar> ().current += (int)SaveGameManager.loadMinusSave.TotalSeconds * 1;
+
         loveMeter.GetComponent<ProgressBar> ().current -= (int)SaveGameManager.loadMinusSave.TotalSeconds * 1;
 
         InvokeRepeating ("heightenNeeds", 1, 1);

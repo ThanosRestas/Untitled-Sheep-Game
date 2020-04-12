@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -13,18 +15,42 @@ public class SaveData
     public int tidyNess;
     public System.DateTime dateOfSave;
     public System.DateTime dateOfLoad;
+    public List<PoopPosition> poopPositions;      
     // ------------------------------------------------
+
+
 }
+
+ [System.Serializable]
+ public class PoopPosition
+ {
+     public float x;
+     public float y;
+     public float z; 
+
+     public PoopPosition(float x1, float y1, float z1)
+     {
+         x = x1;
+         y = y1;
+         z = z1;
+     }  
+     
+
+ }
 
 // Static so we dont need an instace of the class
 public static class SaveGameManager
 {
     // Get unity's default save data path per platform and save to specified file
     public static string savePath = Application.persistentDataPath + "/player.sf";
+    
+
     // Time difference between Load time and Save time
     public static System.TimeSpan loadMinusSave;
     public static void Save (SaveData saveData)
-    {   
+    {
+       
+
         // Get the time on save / close;
         saveData.dateOfSave = System.DateTime.Now;
         BinaryFormatter binaryFormatter = new BinaryFormatter ();
@@ -40,7 +66,7 @@ public static class SaveGameManager
     public static SaveData Load ()
     {
 
-        
+        Debug.Log( Application.persistentDataPath );
         // Check specified path exists
         if (!File.Exists (savePath))
             return null;
@@ -54,12 +80,14 @@ public static class SaveGameManager
         stream.Close ();
 
         saveData.dateOfLoad = System.DateTime.Now;
-        Debug.Log("Saved :" + saveData.dateOfSave);
-        Debug.Log("Loaded :" + saveData.dateOfLoad);
+        Debug.Log ("Saved :" + saveData.dateOfSave);
+        Debug.Log ("Loaded :" + saveData.dateOfLoad);
 
         loadMinusSave = saveData.dateOfLoad - saveData.dateOfSave;
-        Debug.Log("Time passed in seconds :" + (int)loadMinusSave.TotalSeconds);
-        
+        Debug.Log ("Time passed in seconds :" + (int) loadMinusSave.TotalSeconds);
+
         return saveData;
     }
+
+
 }

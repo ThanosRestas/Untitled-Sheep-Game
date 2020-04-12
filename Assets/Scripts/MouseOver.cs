@@ -14,6 +14,9 @@ public class MouseOver : MonoBehaviour
     public List<GameObject> emojiMeshes = new List<GameObject> ();
     private Dictionary<string, GameObject> emotionType = new Dictionary<string, GameObject> ();
     public SaveData save = new SaveData ();
+    public GameObject[] poopInScene;    
+    public Vector3 poopPosition;
+    
     
     void Awake ()
     {
@@ -29,6 +32,15 @@ public class MouseOver : MonoBehaviour
 
         tidynessMeter.GetComponent<ProgressBar> ().current = save.tidyNess;
 
+        // Instantiate a poop prefab for every poop position
+        foreach(PoopPosition vector in save.poopPositions)
+        {
+            poopPosition.x = vector.x;
+            poopPosition.y = vector.y;
+            poopPosition.z = vector.z;
+            Instantiate (poopModel, poopPosition, Quaternion.Euler (0, 0, 0));
+        }
+
         anim = gameObject.GetComponent<Animator> ();
         angry = gameObject.GetComponent<MeshRenderer> ();
 
@@ -38,10 +50,10 @@ public class MouseOver : MonoBehaviour
         }
         
         //private int timePassedSinceQuit = (int)SaveGameManager.loadMinusSave.TotalSeconds ;
-        loveMeter.GetComponent<ProgressBar> ().current -= (int)SaveGameManager.loadMinusSave.TotalSeconds * 1;
-        hungerMeter.GetComponent<ProgressBar> ().current += (int)SaveGameManager.loadMinusSave.TotalSeconds * 1;
+        //loveMeter.GetComponent<ProgressBar> ().current -= (int)SaveGameManager.loadMinusSave.TotalSeconds * 1;
+        //hungerMeter.GetComponent<ProgressBar> ().current += (int)SaveGameManager.loadMinusSave.TotalSeconds * 1;
 
-        loveMeter.GetComponent<ProgressBar> ().current -= (int)SaveGameManager.loadMinusSave.TotalSeconds * 1;
+        //loveMeter.GetComponent<ProgressBar> ().current -= (int)SaveGameManager.loadMinusSave.TotalSeconds * 1;
 
         InvokeRepeating ("heightenNeeds", 1, 1);
     }
@@ -49,8 +61,21 @@ public class MouseOver : MonoBehaviour
     void OnApplicationQuit ()
     {
         //Debug.Log("Application ending after " + Time.time + " seconds");
+        scanforPoop();
         SaveGameManager.Save (save);
     }
+
+    private void scanforPoop()
+    {
+        poopInScene = GameObject.FindGameObjectsWithTag("Poop");
+        
+        foreach(GameObject poop in poopInScene)
+        {            
+            save.poopPositions.Add(new PoopPosition(poop.transform.position.x, poop.transform.position.y, poop.transform.position.z )); 
+        }
+    }
+
+    
 
     private void Update ()
     {

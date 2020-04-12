@@ -32,13 +32,14 @@ public class MouseOver : MonoBehaviour
 
         tidynessMeter.GetComponent<ProgressBar> ().current = save.tidyNess;
 
+       
+
+
         // Instantiate a poop prefab for every poop position
-        foreach(PoopPosition vector in save.poopPositions)
+        foreach(PoopPosition poop in save.poopPositions)
         {
-            poopPosition.x = vector.x;
-            poopPosition.y = vector.y;
-            poopPosition.z = vector.z;
-            Instantiate (poopModel, poopPosition, Quaternion.Euler (0, 0, 0));
+            
+            Instantiate (poopModel, poop.returnVector(), Quaternion.Euler (0, 0, 0));
         }
 
         anim = gameObject.GetComponent<Animator> ();
@@ -68,9 +69,11 @@ public class MouseOver : MonoBehaviour
     private void scanforPoop()
     {
         poopInScene = GameObject.FindGameObjectsWithTag("Poop");
+        save.poopPositions.Clear();
         
         foreach(GameObject poop in poopInScene)
-        {            
+        {   
+               
             save.poopPositions.Add(new PoopPosition(poop.transform.position.x, poop.transform.position.y, poop.transform.position.z )); 
         }
     }

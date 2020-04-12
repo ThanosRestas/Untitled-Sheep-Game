@@ -1689,7 +1689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 209638179, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
       propertyPath: save.poopPositions.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 209638179, guid: 46398a79a336cba4c9c8998b2bff56c2, type: 3}
       propertyPath: m_Camera

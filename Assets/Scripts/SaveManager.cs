@@ -33,7 +33,17 @@ public class SaveData
          x = x1;
          y = y1;
          z = z1;
-     }  
+     }
+
+     public Vector3 returnVector()
+     {
+         Vector3 poopVector;
+         poopVector.x = x;
+         poopVector.y = y;
+         poopVector.z = z;
+
+        return poopVector; 
+     }
      
 
  }

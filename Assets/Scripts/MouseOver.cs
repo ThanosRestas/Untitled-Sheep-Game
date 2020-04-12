@@ -27,6 +27,7 @@ public class MouseOver : MonoBehaviour
     void Start ()
     {
         save = SaveGameManager.Load ();
+        
         loveMeter.GetComponent<ProgressBar> ().current = save.love;
         hungerMeter.GetComponent<ProgressBar> ().current = save.hunger;
 
@@ -41,6 +42,7 @@ public class MouseOver : MonoBehaviour
             
             Instantiate (poopModel, poop.returnVector(), Quaternion.Euler (0, 0, 0));
         }
+        save.poopPositions.Clear();
 
         anim = gameObject.GetComponent<Animator> ();
         angry = gameObject.GetComponent<MeshRenderer> ();
@@ -69,7 +71,7 @@ public class MouseOver : MonoBehaviour
     private void scanforPoop()
     {
         poopInScene = GameObject.FindGameObjectsWithTag("Poop");
-        save.poopPositions.Clear();
+        
         
         foreach(GameObject poop in poopInScene)
         {   
@@ -129,8 +131,8 @@ public class MouseOver : MonoBehaviour
     {
         if (Random.value < 0.5)
         {
-            Instantiate (poopModel, transform.position + new Vector3 (0f, 0.5f, 0f), Quaternion.Euler (0, 0, 0));
-            tidynessMeter.GetComponent<ProgressBar> ().current -= 10;
+            //Instantiate (poopModel, transform.position + new Vector3 (0f, 0.5f, 0f), Quaternion.Euler (0, 0, 0));
+            //tidynessMeter.GetComponent<ProgressBar> ().current -= 10;
 
         }
 

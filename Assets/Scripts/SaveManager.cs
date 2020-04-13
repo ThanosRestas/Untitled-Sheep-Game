@@ -15,12 +15,14 @@ public class SaveData
     public int tidyNess;
     public System.DateTime dateOfSave;
     public System.DateTime dateOfLoad;
+    // List<Vector3> can't be serialized for some reason in Unity so I
+    // had to create a custom type via the PoopPosition class
     public List<PoopPosition> poopPositions;      
     // ------------------------------------------------
 
 
 }
-
+ 
  [System.Serializable]
  public class PoopPosition
  {

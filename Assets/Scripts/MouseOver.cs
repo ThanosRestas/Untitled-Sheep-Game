@@ -94,6 +94,7 @@ public class MouseOver : MonoBehaviour
         //Debug.Log ("Pet clicked !");  
         anim.Play ("stun");
         showEmotion ("emojiAngry");
+        poop();
 
     }
 
@@ -133,10 +134,10 @@ public class MouseOver : MonoBehaviour
         {
 
             GameObject poopInstance = Instantiate (poopModel, transform.position + new Vector3 (0f, 0.5f, 0f), Quaternion.Euler (0, -150, 0));
-           
             tidynessMeter.GetComponent<ProgressBar> ().current -= 10;
 
         }
+    
 
     }
 

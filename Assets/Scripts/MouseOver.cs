@@ -130,10 +130,11 @@ public class MouseOver : MonoBehaviour
 
     public void poop ()
     {
+        Vector3 pos = new Vector3 (0f, 0f, 1f);
         if (Random.value < 0.5)
         {
-
-            GameObject poopInstance = Instantiate (poopModel, transform.position + new Vector3 (0f, 0.5f, 0f), Quaternion.Euler (0, -150, 0));
+            
+            GameObject poopInstance = Instantiate (poopModel, transform.position + pos, Quaternion.Euler (0, -150, 0));
             tidynessMeter.GetComponent<ProgressBar> ().current -= 10;
 
         }

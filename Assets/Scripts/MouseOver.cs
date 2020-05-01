@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ using UnityEngine;
 public class MouseOver : MonoBehaviour
 {
     private Animator anim;
-    private MeshRenderer angry; 
+    private MeshRenderer angry;
     public GameObject poopModel;
     public GameObject loveMeter;
     public GameObject hungerMeter;
@@ -14,10 +14,9 @@ public class MouseOver : MonoBehaviour
     public List<GameObject> emojiMeshes = new List<GameObject> ();
     private Dictionary<string, GameObject> emotionType = new Dictionary<string, GameObject> ();
     public SaveData save = new SaveData ();
-    public GameObject[] poopInScene;    
+    public GameObject[] poopInScene;
     public Vector3 poopPosition;
-    
-    
+
     void Awake ()
     {
 
@@ -27,31 +26,28 @@ public class MouseOver : MonoBehaviour
     void Start ()
     {
         save = SaveGameManager.Load ();
-        
+
         loveMeter.GetComponent<ProgressBar> ().current = save.love;
         hungerMeter.GetComponent<ProgressBar> ().current = save.hunger;
 
         tidynessMeter.GetComponent<ProgressBar> ().current = save.tidyNess;
 
-       
-
-
         // Instantiate a poop prefab for every poop position
-        foreach(PoopPosition poop in save.poopPositions)
+        foreach (PoopPosition poop in save.poopPositions)
         {
-            
-            Instantiate (poopModel, poop.returnVector(), Quaternion.Euler (0, 0, 0));
+
+            Instantiate (poopModel, poop.returnVector (), Quaternion.Euler (0, 0, 0));
         }
-        save.poopPositions.Clear();
+        save.poopPositions.Clear ();
 
         anim = gameObject.GetComponent<Animator> ();
         angry = gameObject.GetComponent<MeshRenderer> ();
 
         foreach (GameObject emotion in emojiMeshes)
         {
-           emotionType.Add (emotion.name, emotion);
+            emotionType.Add (emotion.name, emotion);
         }
-        
+
         //private int timePassedSinceQuit = (int)SaveGameManager.loadMinusSave.TotalSeconds ;
         //loveMeter.GetComponent<ProgressBar> ().current -= (int)SaveGameManager.loadMinusSave.TotalSeconds * 1;
         //hungerMeter.GetComponent<ProgressBar> ().current += (int)SaveGameManager.loadMinusSave.TotalSeconds * 1;
@@ -64,23 +60,20 @@ public class MouseOver : MonoBehaviour
     void OnApplicationQuit ()
     {
         //Debug.Log("Application ending after " + Time.time + " seconds");
-        scanforPoop();
+        scanforPoop ();
         SaveGameManager.Save (save);
     }
 
-    private void scanforPoop()
+    private void scanforPoop ()
     {
-        poopInScene = GameObject.FindGameObjectsWithTag("Poop");
-        
-        
-        foreach(GameObject poop in poopInScene)
-        {   
-               
-            save.poopPositions.Add(new PoopPosition(poop.transform.position.x, poop.transform.position.y, poop.transform.position.z )); 
+        poopInScene = GameObject.FindGameObjectsWithTag ("Poop");
+
+        foreach (GameObject poop in poopInScene)
+        {
+
+            save.poopPositions.Add (new PoopPosition (poop.transform.position.x, poop.transform.position.y, poop.transform.position.z));
         }
     }
-
-    
 
     private void Update ()
     {
@@ -94,7 +87,7 @@ public class MouseOver : MonoBehaviour
         //Debug.Log ("Pet clicked !");  
         anim.Play ("stun");
         showEmotion ("emojiAngry");
-        poop();
+        poop ();
 
     }
 
@@ -106,39 +99,36 @@ public class MouseOver : MonoBehaviour
         Rigidbody emojiRigid = emoji.GetComponent<Rigidbody> ();
         emojiRigid.AddExplosionForce (100, transform.position + pos, 1);
 
-        
-
-        if(emojiType == "emojiAngry")
+        if (emojiType == "emojiAngry")
         {
             loveMeter.GetComponent<ProgressBar> ().current -= 10;
         }
-        else if(emojiType == "emojiLove")
+        else if (emojiType == "emojiLove")
         {
             loveMeter.GetComponent<ProgressBar> ().current += 10;
         }
-        else if(emojiType == "emojiLike")
+        else if (emojiType == "emojiLike")
         {
             hungerMeter.GetComponent<ProgressBar> ().current -= 10;
         }
-        else if(emojiType == "emojiClean")
+        else if (emojiType == "emojiClean")
         {
             tidynessMeter.GetComponent<ProgressBar> ().current += 10;
         }
-
 
     }
 
     public void poop ()
     {
-        
+
         if (Random.value < 0.5)
         {
-            
+
             GameObject poopInstance = Instantiate (poopModel, transform.position + transform.forward * -2, Quaternion.Euler (0, -150, 0));
+
             tidynessMeter.GetComponent<ProgressBar> ().current -= 10;
 
         }
-    
 
     }
 

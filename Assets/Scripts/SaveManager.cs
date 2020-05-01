@@ -17,51 +17,47 @@ public class SaveData
     public System.DateTime dateOfLoad;
     // List<Vector3> can't be serialized for some reason in Unity so I
     // had to create a custom type via the PoopPosition class
-    public List<PoopPosition> poopPositions;      
+    public List<PoopPosition> poopPositions;
     // ------------------------------------------------
 
+}
+
+[System.Serializable]
+public class PoopPosition
+{
+    public float x;
+    public float y;
+    public float z;
+
+    public PoopPosition (float x1, float y1, float z1)
+    {
+        x = x1;
+        y = y1;
+        z = z1;
+    }
+
+    public Vector3 returnVector ()
+    {
+        Vector3 poopVector;
+        poopVector.x = x;
+        poopVector.y = y;
+        poopVector.z = z;
+
+        return poopVector;
+    }
 
 }
- 
- [System.Serializable]
- public class PoopPosition
- {
-     public float x;
-     public float y;
-     public float z; 
-
-     public PoopPosition(float x1, float y1, float z1)
-     {
-         x = x1;
-         y = y1;
-         z = z1;
-     }
-
-     public Vector3 returnVector()
-     {
-         Vector3 poopVector;
-         poopVector.x = x;
-         poopVector.y = y;
-         poopVector.z = z;
-
-        return poopVector; 
-     }
-     
-
- }
 
 // Static so we dont need an instace of the class
 public static class SaveGameManager
 {
     // Get unity's default save data path per platform and save to specified file
     public static string savePath = Application.persistentDataPath + "/player.sf";
-    
 
     // Time difference between Load time and Save time
     public static System.TimeSpan loadMinusSave;
     public static void Save (SaveData saveData)
     {
-       
 
         // Get the time on save / close;
         saveData.dateOfSave = System.DateTime.Now;
@@ -78,7 +74,7 @@ public static class SaveGameManager
     public static SaveData Load ()
     {
 
-        Debug.Log( Application.persistentDataPath );
+        Debug.Log (Application.persistentDataPath);
         // Check specified path exists
         if (!File.Exists (savePath))
             return null;
@@ -100,6 +96,5 @@ public static class SaveGameManager
 
         return saveData;
     }
-
 
 }

@@ -24,6 +24,8 @@ public class RandomMovement : MonoBehaviour
 
     private void Update ()
     {
+        
+
         if (distanceLeft < 0.15)
         {
             //Debug.Log ("I'm near my destination");

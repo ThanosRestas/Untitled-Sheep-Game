@@ -649,7 +649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106736}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.61}
+  m_LocalPosition: {x: 0.56, y: 0, z: -0.61}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 406724}
@@ -743,6 +743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDuration: 5
   waitBeforeMoving: 4
+  sheep: {fileID: 0}
   turnSpeed: 0.1
   distanceToDestination: 0
   distanceLeft: 0
@@ -758,11 +759,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62187a1ddfcd73d4ca4f660f8deda092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phases:
-  - {fileID: 2800000, guid: 47a93771c6ce30c4bacd97eb2643b32d, type: 3}
-  - {fileID: 2800000, guid: 6e433044e2e84a049a0b9bd4d345277c, type: 3}
-  emojiExplosion: {fileID: 1898909004894684345, guid: 63e2a989fbdd9db44b58ef21e5bd6854,
-    type: 3}
+  poopModel: {fileID: 0}
+  loveMeter: {fileID: 0}
+  hungerMeter: {fileID: 0}
+  tidynessMeter: {fileID: 0}
+  emojiMeshes: []
+  save:
+    love: 0
+    hunger: 0
+    tidyNess: 0
+    poopPositions: []
+  poopInScene: []
+  poopPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &106738
 GameObject:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ public class RandomMovement : MonoBehaviour
             if (poopedAlready == false)
             {
                 poopedAlready = true;
-                sheep.GetComponent<MouseOver> ().poop ();
+                //sheep.GetComponent<MouseOver> ().poop ();
             }
 
         }

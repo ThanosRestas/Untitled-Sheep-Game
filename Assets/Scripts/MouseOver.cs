@@ -13,9 +13,8 @@ public class MouseOver : MonoBehaviour
     public GameObject tidynessMeter;
     public List<GameObject> emojiMeshes = new List<GameObject> ();
     private Dictionary<string, GameObject> emotionType = new Dictionary<string, GameObject> ();
-    public SaveData save = new SaveData ();
-    public GameObject[] poopInScene;
-    public Vector3 poopPosition;
+    public SaveData save = new SaveData ();   
+
 
     void Awake ()
     {
@@ -25,6 +24,7 @@ public class MouseOver : MonoBehaviour
     // Start is called before the first frame update
     void Start ()
     {
+        
         save = SaveGameManager.Load ();
 
         loveMeter.GetComponent<ProgressBar> ().current = save.love;
@@ -66,7 +66,7 @@ public class MouseOver : MonoBehaviour
 
     private void scanforPoop ()
     {
-        poopInScene = GameObject.FindGameObjectsWithTag ("Poop");
+        GameObject[] poopInScene = GameObject.FindGameObjectsWithTag ("Poop");
 
         foreach (GameObject poop in poopInScene)
         {

@@ -11,12 +11,6 @@ public class poop : MonoBehaviour
         GetComponent<Rigidbody> ().AddForce (new Vector3 (0f, 0f, -0.5f), ForceMode.Impulse);
     }
 
-    // Update is called once per frame
-    void Update ()
-    {
-
-    }
-
     IEnumerator ScaleOverTime (float time)
     {
         Vector3 originalScale = transform.localScale;

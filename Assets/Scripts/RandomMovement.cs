@@ -64,6 +64,7 @@ public class RandomMovement : MonoBehaviour
 
     }
 
+    // Pick a random point in scene and move to
     private IEnumerator MoveToPoint (Vector3 targetPos)
     {
         float timer = 0.0f;

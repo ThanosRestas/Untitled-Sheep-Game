@@ -57,6 +57,7 @@ public class RandomMovement : MonoBehaviour
         {
             hasArrived = true;
 
+            // Pick a random point in scene and move to
             float randX = Random.Range (-5.0f, 5.0f);
             float randZ = Random.Range (-5.0f, 5.0f);
             StartCoroutine (MoveToPoint (new Vector3 (randX, 0f, randZ)));
@@ -64,7 +65,7 @@ public class RandomMovement : MonoBehaviour
 
     }
 
-    // Pick a random point in scene and move to
+    
     private IEnumerator MoveToPoint (Vector3 targetPos)
     {
         float timer = 0.0f;
